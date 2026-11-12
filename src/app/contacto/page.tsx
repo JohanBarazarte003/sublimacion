@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteConfig, whatsappLink } from "../lib/config";
+import { siteConfig, whatsappLink } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Contacto" };
 

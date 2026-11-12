@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { siteConfig } from "../../lib/config";
+import { siteConfig } from "@/lib/config";
 
 export default function Navbar() {
   const [abierto, setAbierto] = useState(false);

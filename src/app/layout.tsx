@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/ui/Navbar";
-import Footer from "./components/ui/Footer";
-import WhatsAppButton from "./components/ui/WhatsAppButton";
-import { siteConfig } from "./lib/config";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import { siteConfig } from "@/lib/config";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,4 +1,4 @@
-import { whatsappLink } from "../../lib/config";
+import { whatsappLink } from "@/lib/config";
 
 export default function WhatsAppButton() {
   return (
