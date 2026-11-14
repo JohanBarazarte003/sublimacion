@@ -1,0 +1,53 @@
+@theme static {
+  /* 1) COLORES BASE: las tintas de impresión (CMYK). EDITA AQUÍ la paleta. */
+  --color-cian: #00aeef;
+  --color-magenta: #e0007a;
+  --color-amarillo: #ffd500;
+  --color-tinta: #12122b;
+
+  /* 2) ROLES: qué color cumple cada función. Reasígnalos si quieres. */
+  --color-primario: var(--color-magenta);
+  --color-primario-hover: color-mix(in oklab, var(--color-primario) 82%, black);
+  --color-secundario: var(--color-cian);
+  --color-acento: var(--color-amarillo);
+  --color-texto: var(--color-tinta);
+  --color-texto-suave: color-mix(in oklab, var(--color-tinta) 68%, white);
+  --color-fondo: #ffffff;
+  --color-superficie: color-mix(in oklab, var(--color-secundario) 7%, white);
+  --color-borde: color-mix(in oklab, var(--color-tinta) 10%, white);
+  --color-sobre-primario: #ffffff;
+  --color-exito: #16a34a;
+  --color-error: #dc2626;
+
+  /* 3) DEGRADADO DE MARCA */
+  --gradient-tinta: linear-gradient(
+    90deg,
+    var(--color-cian),
+    var(--color-magenta),
+    var(--color-amarillo)
+  );
+
+  /* 4) FORMAS Y SOMBRAS */
+  --radius-tarjeta: 1.5rem;
+  --shadow-tarjeta: 0 20px 45px -24px
+    color-mix(in oklab, var(--color-tinta) 40%, transparent);
+  --shadow-boton: 0 12px 28px -10px
+    color-mix(in oklab, var(--color-primario) 65%, transparent);
+}
+
+/* 5) TIPOGRAFÍA (la fuente se carga en layout.tsx) */
+@theme inline {
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Utilidades de marca */
+@utility texto-degradado {
+  background-image: var(--gradient-tinta);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility fondo-degradado {
+  background-image: var(--gradient-tinta);
+}

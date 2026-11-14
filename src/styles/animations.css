@@ -1,0 +1,33 @@
+@theme {
+  --animate-entrar-abajo: entrar-abajo 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-entrar-arriba: entrar-arriba 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-pop: pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-flotar: flotar 6s ease-in-out infinite;
+
+  @keyframes entrar-abajo {
+    from { opacity: 0; transform: translateY(-14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes entrar-arriba {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    from { transform: scale(0.4); }
+    to { transform: scale(1); }
+  }
+  @keyframes flotar {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+  }
+}
+
+/* Respeta a quien tiene desactivadas las animaciones en su dispositivo */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

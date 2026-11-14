@@ -1,5 +1,13 @@
 @import "tailwindcss";
+@import "../styles/theme.css";
+@import "../styles/animations.css";
 
-:root {
-  color-scheme: light;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: var(--color-primario);
+    color: var(--color-sobre-primario);
+  }
 }
