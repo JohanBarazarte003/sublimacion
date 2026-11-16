@@ -61,7 +61,7 @@ export function leerDecimal(
   return n;
 }
 
-const PATRON_UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+export const PATRON_UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export function leerUuid(f: FormData, campo = "id"): string {
   const valor = String(f.get(campo) ?? "");
@@ -73,3 +73,45 @@ export function leerUuid(f: FormData, campo = "id"): string {
 
 export const leerBool = (f: FormData, campo: string) =>
   ["on", "true"].includes(String(f.get(campo) ?? ""));
+
+
+// Fecha y hora escritas en hora de Caracas; se guardan en UTC
+export function leerFechaOpcional(f: FormData, campo: string, etiqueta: string): string | null {
+  const bruto = String(f.get(campo) ?? "").trim();
+  if (!bruto) return null;
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(bruto)) {
+    throw new ErrorValidacion(`Revisa ${etiqueta}.`);
+  }
+  const fecha = new Date(`${bruto}:00-04:00`);
+  if (Number.isNaN(fecha.getTime())) throw new ErrorValidacion(`Revisa ${etiqueta}.`);
+  return fecha.toISOString();
+}
+
+// "global", "producto:<id>" o "variante:<id>"
+export function leerAlcance(f: FormData): { producto_id: string | null; variante_id: string | null } {
+  const bruto = String(f.get("alcance") ?? "global");
+  if (bruto === "global") return { producto_id: null, variante_id: null };
+
+  const [tipo, id] = bruto.split(":");
+  if (!PATRON_UUID.test(id ?? "")) {
+    throw new ErrorValidacion("Elige a qué se aplica la promoción.");
+  }
+  if (tipo === "producto") return { producto_id: id, variante_id: null };
+  if (tipo === "variante") return { producto_id: null, variante_id: id };
+  throw new ErrorValidacion("Elige a qué se aplica la promoción.");
+}
+
+// Ruta de una imagen ya subida: "<carpeta>/<uuid>.<ext>"
+export function leerRutaImagenOpcional(
+  f: FormData,
+  campo: string,
+  carpeta: string
+): string | null {
+  const bruto = String(f.get(campo) ?? "").trim();
+  if (!bruto) return null;
+  const patron = new RegExp(`^${carpeta}/[0-9a-f-]{36}\\.(webp|png|jpg)$`, "i");
+  if (!patron.test(bruto)) {
+    throw new ErrorValidacion("La imagen no es válida. Súbela de nuevo.");
+  }
+  return bruto;
+}

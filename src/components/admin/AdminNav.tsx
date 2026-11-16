@@ -18,9 +18,9 @@ type Seccion = { nombre: string; href: string; icono: LucideIcon; disponible: bo
 const SECCIONES: Seccion[] = [
   { nombre: "Resumen", href: "/admin", icono: LayoutDashboard, disponible: true },
   { nombre: "Cotizaciones", href: "/admin/cotizaciones", icono: ClipboardList, disponible: false },
-  { nombre: "Productos y precios", href: "/admin/productos", icono: Package, disponible: false },
-  { nombre: "Promociones", href: "/admin/promociones", icono: Percent, disponible: false },
-  { nombre: "Servicios", href: "/admin/servicios", icono: Wrench, disponible: false },
+  { nombre: "Productos y precios", href: "/admin/productos", icono: Package, disponible: true },
+  { nombre: "Promociones", href: "/admin/promociones", icono: Percent, disponible: true },
+  { nombre: "Servicios", href: "/admin/servicios", icono: Wrench, disponible: true },
   { nombre: "Galería", href: "/admin/galeria", icono: Images, disponible: false },
   { nombre: "Ajustes", href: "/admin/ajustes", icono: Settings, disponible: false },
 ];

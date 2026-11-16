@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useFormStatus } from "react-dom";
+import { usePendiente } from "./FormAccion";
 
 const ESTILOS = {
   primario: "bg-primario text-sobre-primario hover:bg-primario-hover",
@@ -18,15 +18,15 @@ export default function BotonEnviar({
   variante?: keyof typeof ESTILOS;
   textoPendiente?: string;
 }) {
-  const { pending } = useFormStatus();
+  const pendiente = usePendiente();
 
   return (
     <button
       type="submit"
-      disabled={pending}
+      disabled={pendiente}
       className={`inline-flex min-h-[44px] items-center justify-center rounded-full px-5 text-sm font-semibold transition active:scale-95 disabled:opacity-60 ${ESTILOS[variante]}`}
     >
-      {pending ? textoPendiente : children}
+      {pendiente ? textoPendiente : children}
     </button>
   );
 }

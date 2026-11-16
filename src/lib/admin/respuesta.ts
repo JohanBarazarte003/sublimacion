@@ -1,9 +1,10 @@
 import { ErrorValidacion } from "@/lib/validacion/campos";
 
-export type Estado = { ok: boolean; mensaje: string } | null;
+// "id" cambia en cada respuesta; el formulario lo usa para reiniciarse al guardar con éxito
+export type Estado = { ok: boolean; mensaje: string; id: number } | null;
 
-export const exito = (mensaje: string): Estado => ({ ok: true, mensaje });
-export const fallo = (mensaje: string): Estado => ({ ok: false, mensaje });
+export const exito = (mensaje: string): Estado => ({ ok: true, mensaje, id: Date.now() });
+export const fallo = (mensaje: string): Estado => ({ ok: false, mensaje, id: Date.now() });
 
 // Los errores de validación se muestran tal cual; los demás se registran y se muestran en genérico
 export function convertirError(e: unknown): Estado {
