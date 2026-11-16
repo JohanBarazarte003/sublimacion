@@ -21,7 +21,7 @@ const SECCIONES: Seccion[] = [
   { nombre: "Productos y precios", href: "/admin/productos", icono: Package, disponible: true },
   { nombre: "Promociones", href: "/admin/promociones", icono: Percent, disponible: true },
   { nombre: "Servicios", href: "/admin/servicios", icono: Wrench, disponible: true },
-  { nombre: "Galería", href: "/admin/galeria", icono: Images, disponible: false },
+  { nombre: "Galería", href: "/admin/galeria", icono: Images, disponible: true },
   { nombre: "Ajustes", href: "/admin/ajustes", icono: Settings, disponible: false },
 ];
 
